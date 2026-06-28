@@ -6,59 +6,23 @@
     <title>RATPIE DQUARTIER · 93</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet"/>
     <style>
-        /* ===== RESET & BASE ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
             background: #0a0a0a;
             font-family: 'Space Grotesk', sans-serif;
             color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
+            padding: 20px;
         }
-
-        /* ===== FOND ANIMÉ ===== */
-        .bg-glow {
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at 30% 50%, rgba(255, 204, 0, 0.06) 0%, transparent 60%),
-                        radial-gradient(ellipse at 70% 80%, rgba(255, 68, 68, 0.04) 0%, transparent 50%);
-            z-index: 0;
-            pointer-events: none;
-            animation: breathe 12s ease-in-out infinite alternate;
-        }
-
-        @keyframes breathe {
-            0% { transform: scale(1) rotate(0deg); opacity: 0.6; }
-            100% { transform: scale(1.2) rotate(3deg); opacity: 1; }
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 30px 20px 60px;
-        }
-
-        /* ===== HEADER ===== */
+        .container { max-width: 1200px; margin: 0 auto; }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0 30px;
-            border-bottom: 1px solid rgba(255, 204, 0, 0.15);
+            padding: 20px 0 30px;
+            border-bottom: 1px solid rgba(255,204,0,0.15);
             flex-wrap: wrap;
             gap: 15px;
         }
-
         .logo {
             font-family: 'Anton', sans-serif;
             font-size: 1.8rem;
@@ -66,468 +30,159 @@
             background: linear-gradient(135deg, #ffcc00, #ff8800);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(255, 204, 0, 0.2);
         }
-
-        .logo span {
-            color: #fff;
-            -webkit-text-fill-color: #fff;
-            background: none;
-        }
-
         .nav {
             display: flex;
-            gap: 30px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            gap: 25px;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
+        .nav a { color: #aaa; text-decoration: none; transition: 0.3s; }
+        .nav a:hover { color: #ffcc00; }
 
-        .nav a {
-            color: #aaa;
-            text-decoration: none;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0%;
-            height: 2px;
-            background: #ffcc00;
-            transition: 0.3s;
-        }
-
-        .nav a:hover {
-            color: #ffcc00;
-        }
-        .nav a:hover::after {
+        /* ===== L'IMAGE ===== */
+        .my-image {
             width: 100%;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            text-align: center;
-            padding: 60px 0 40px;
-        }
-
-        .hero .main-title {
-            font-family: 'Anton', sans-serif;
-            font-size: clamp(4rem, 18vw, 10rem);
-            line-height: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            background: linear-gradient(180deg, #ffcc00 0%, #ff8800 40%, #fff 70%, #ffcc00 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 80px rgba(255, 204, 0, 0.15);
-            animation: shimmer 6s ease-in-out infinite alternate;
-        }
-
-        @keyframes shimmer {
-            0% { filter: brightness(1); }
-            100% { filter: brightness(1.3); }
-        }
-
-        .hero .sub-line {
-            font-size: clamp(1.2rem, 4vw, 2.5rem);
-            letter-spacing: 12px;
-            color: #fff;
-            margin-top: -10px;
-            font-weight: 300;
-            text-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
-        }
-
-        .hero .number-93 {
-            font-family: 'Anton', sans-serif;
-            font-size: clamp(5rem, 20vw, 12rem);
-            color: #ff2222;
-            text-shadow: 0 0 60px rgba(255, 34, 34, 0.4), 0 0 120px rgba(255, 34, 34, 0.15);
-            line-height: 1;
-            margin: 10px 0;
-        }
-
-        .hero .tagline {
-            display: inline-block;
-            font-size: clamp(1rem, 3vw, 1.8rem);
-            font-weight: 700;
-            letter-spacing: 6px;
-            background: rgba(255, 204, 0, 0.12);
-            border: 1px solid rgba(255, 204, 0, 0.3);
-            padding: 12px 40px;
-            border-radius: 60px;
-            backdrop-filter: blur(6px);
-            text-transform: uppercase;
-            color: #ffcc00;
-            box-shadow: 0 0 40px rgba(255, 204, 0, 0.05);
-            margin-top: 10px;
-        }
-
-        /* ===== SECTION PRODUITS ===== */
-        .section-title {
-            font-family: 'Anton', sans-serif;
-            font-size: 2.2rem;
-            letter-spacing: 4px;
-            margin: 70px 0 30px;
-            text-align: center;
-            color: #ffcc00;
-            text-transform: uppercase;
-            border-bottom: 1px solid rgba(255, 204, 0, 0.1);
-            padding-bottom: 15px;
+            height: 400px;
+            background-image: url('079AC749-C1BB-4E87-89B2-938D555F488D.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 24px;
+            border: 3px solid #ffcc00;
+            margin: 30px 0;
+            box-shadow: 0 0 60px rgba(255,204,0,0.08);
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
-
-        /* ===== CARTE PRODUIT ===== */
         .card {
             background: linear-gradient(145deg, #141414, #1a1a1a);
-            border-radius: 28px;
-            padding: 30px 20px 30px;
+            border-radius: 24px;
+            padding: 25px 20px;
             text-align: center;
-            border: 1px solid rgba(255, 204, 0, 0.08);
-            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255,204,0,0.08);
+            transition: 0.4s;
         }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 0%, rgba(255, 204, 0, 0.03), transparent 60%);
-            transition: 0.6s;
-            pointer-events: none;
-        }
-
         .card:hover {
-            transform: translateY(-12px) scale(1.01);
+            transform: translateY(-8px);
             border-color: #ffcc00;
-            box-shadow: 0 20px 60px rgba(255, 204, 0, 0.12), 0 0 80px rgba(255, 204, 0, 0.04);
+            box-shadow: 0 10px 40px rgba(255,204,0,0.08);
         }
-
-        .card:hover::before {
-            transform: scale(1.5);
-        }
-
         .card .mockup {
-            height: 220px;
-            background: radial-gradient(ellipse at 50% 80%, #2a2a2a, #111);
-            border-radius: 18px;
+            height: 200px;
+            background: #1a1a1a;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Anton', sans-serif;
-            font-size: 2.2rem;
+            font-size: 1.2rem;
             color: #ffcc00;
             border: 1px solid #2a2a2a;
-            margin-bottom: 20px;
-            transition: 0.4s;
-            text-shadow: 0 0 20px rgba(255, 204, 0, 0.1);
-            position: relative;
-            letter-spacing: 2px;
+            margin-bottom: 15px;
+            padding: 10px;
+            text-align: center;
         }
-
-        .card:hover .mockup {
-            border-color: #ffcc00;
-            box-shadow: inset 0 0 50px rgba(255, 204, 0, 0.05);
-        }
-
-        .card .mockup small {
-            font-size: 0.8rem;
-            opacity: 0.6;
-            display: block;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-            letter-spacing: 1px;
-        }
-
-        .card .desc {
-            color: #888;
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-
+        .card h3 { font-size: 1.2rem; }
         .card .price {
             font-family: 'Anton', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #ffcc00;
-            margin-bottom: 18px;
+            margin: 10px 0;
         }
-
         .btn {
             background: linear-gradient(135deg, #ffcc00, #ff8800);
             border: none;
-            padding: 14px 36px;
+            padding: 12px 30px;
             border-radius: 60px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
             color: #0a0a0a;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 20px rgba(255, 204, 0, 0.2);
             width: 100%;
         }
-
         .btn:hover {
             transform: scale(1.04);
-            box-shadow: 0 6px 40px rgba(255, 204, 0, 0.4);
+            box-shadow: 0 4px 30px rgba(255,204,0,0.3);
         }
-
         .btn-outline {
             background: transparent;
             border: 1px solid #ffcc00;
             color: #ffcc00;
-            box-shadow: none;
             margin-top: 8px;
         }
-
-        .btn-outline:hover {
-            background: #ffcc00;
-            color: #0a0a0a;
-        }
-
-        /* ===== PANIER FLOTTANT ===== */
-        .cart-badge {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #ffcc00, #ff8800);
-            color: #0a0a0a;
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            box-shadow: 0 8px 30px rgba(255, 204, 0, 0.3);
-            cursor: pointer;
-            transition: 0.3s;
-            z-index: 999;
-            border: none;
-            font-family: 'Anton', sans-serif;
-        }
-
-        .cart-badge:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 50px rgba(255, 204, 0, 0.5);
-        }
-
-        .cart-badge span {
-            background: #ff2222;
-            color: #fff;
-            font-size: 0.7rem;
-            border-radius: 50%;
-            padding: 2px 8px;
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* ===== FOOTER ===== */
+        .btn-outline:hover { background: #ffcc00; color: #0a0a0a; }
         .footer {
-            margin-top: 80px;
+            margin-top: 50px;
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            border-top: 1px solid rgba(255,255,255,0.04);
             color: #555;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             letter-spacing: 3px;
-            text-transform: uppercase;
         }
-
-        .footer strong {
-            color: #ffcc00;
-            font-weight: 400;
-        }
-
-        /* ===== RESPONSIVE ===== */
+        .footer strong { color: #ffcc00; }
         @media (max-width: 600px) {
-            .header {
-                flex-direction: column;
-                align-items: center;
-            }
-            .nav {
-                gap: 18px;
-                font-size: 0.7rem;
-            }
-            .hero .main-title {
-                letter-spacing: 4px;
-            }
-            .hero .sub-line {
-                letter-spacing: 6px;
-            }
-            .cart-badge {
-                width: 54px;
-                height: 54px;
-                font-size: 1.4rem;
-                bottom: 20px;
-                right: 20px;
-            }
+            .header { flex-direction: column; align-items: center; }
+            .my-image { height: 250px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== FOND ANIMÉ ===== -->
-    <div class="bg-glow"></div>
+<div class="container">
 
-    <!-- ===== CONTENEUR PRINCIPAL ===== -->
-    <div class="container">
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">RATPIE·DQUARTIER</div>
+        <nav class="nav">
+            <a href="#">Collection</a>
+            <a href="#">93</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
 
-        <!-- HEADER -->
-        <header class="header">
-            <div class="logo">RATPIE<span>·</span>DQUARTIER</div>
-            <nav class="nav">
-                <a href="#">Collection</a>
-                <a href="#">93</a>
-                <a href="#">La Rue</a>
-                <a href="#">Contact</a>
-            </nav>
-        </header>
+    <!-- ===== TON IMAGE ===== -->
+    <div class="my-image"></div>
 
-        <!-- HERO -->
-        <section class="hero">
-            <div class="main-title">RATPIE<br/>DQUARTIER</div>
-            <div class="sub-line">✦ RESPECT ✦</div>
-            <div class="number-93">93</div>
-            <div class="tagline">ON CONNAÎT LA RUE</div>
-        </section>
-
-        <!-- COLLECTION -->
-        <h2 class="section-title">⚡ ÉDITION LIMITÉE ⚡</h2>
-
-        <div class="grid">
-            <!-- CARD 1 -->
-            <div class="card">
-                <div class="mockup">
-                    RATPIE<br/>
-                    <span style="font-size:1.2rem; color:#ff4444;">93</span>
-                    <small>OR & NOIR</small>
-                </div>
-                <h3>RATPIE 93</h3>
-                <div class="desc">Sérigraphie fluorescente</div>
-                <div class="price">29,90 €</div>
-                <button class="btn add-to-cart" data-name="RATPIE 93" data-price="29.90">Ajouter au panier</button>
-                <button class="btn btn-outline">Voir le détail</button>
-            </div>
-
-            <!-- CARD 2 -->
-            <div class="card">
-                <div class="mockup">
-                    DQUARTIER<br/>
-                    <span style="font-size:0.9rem; color:#ffcc00;">ON CONNAÎT</span>
-                    <small>ÉDITION BLANCHE</small>
-                </div>
-                <h3>DQUARTIER</h3>
-                <div class="desc">Impression ton sur ton</div>
-                <div class="price">32,90 €</div>
-                <button class="btn add-to-cart" data-name="DQUARTIER" data-price="32.90">Ajouter au panier</button>
-                <button class="btn btn-outline">Voir le détail</button>
-            </div>
-
-            <!-- CARD 3 -->
-            <div class="card">
-                <div class="mockup">
-                    <span style="color:#ff4444;">93</span><br/>
-                    LA RUE<br/>
-                    <small>RÉSERVE ROUGE</small>
-                </div>
-                <h3>93 LA RUE</h3>
-                <div class="desc">Finition métallique</div>
-                <div class="price">34,90 €</div>
-                <button class="btn add-to-cart" data-name="93 LA RUE" data-price="34.90">Ajouter au panier</button>
-                <button class="btn btn-outline">Voir le détail</button>
-            </div>
+    <!-- PRODUITS -->
+    <div class="grid">
+        <div class="card">
+            <div class="mockup">RATPIE<br/>93</div>
+            <h3>RATPIE 93</h3>
+            <div class="price">29,90 €</div>
+            <button class="btn" onclick="alert('✅ Ajouté !')">Ajouter</button>
+            <button class="btn btn-outline">Détail</button>
         </div>
-
-        <!-- FOOTER -->
-        <div class="footer">
-            <strong>RATPIE DQUARTIER</strong> · 93 · ON CONNAÎT LA RUE · <span style="color:#333;">2026</span>
+        <div class="card">
+            <div class="mockup">DQUARTIER<br/>ON CONNAÎT</div>
+            <h3>DQUARTIER</h3>
+            <div class="price">32,90 €</div>
+            <button class="btn" onclick="alert('✅ Ajouté !')">Ajouter</button>
+            <button class="btn btn-outline">Détail</button>
         </div>
-
+        <div class="card">
+            <div class="mockup">93<br/>LA RUE</div>
+            <h3>93 LA RUE</h3>
+            <div class="price">34,90 €</div>
+            <button class="btn" onclick="alert('✅ Ajouté !')">Ajouter</button>
+            <button class="btn btn-outline">Détail</button>
+        </div>
     </div>
 
-    <!-- ===== PANIER FLOTTANT ===== -->
-    <button class="cart-badge" id="cartBtn">
-        🛒
-        <span id="cartCount">0</span>
-    </button>
+    <div class="footer">
+        <strong>RATPIE DQUARTIER</strong> · 93 · ON CONNAÎT LA RUE
+    </div>
 
-    <!-- ===== JAVASCRIPT ===== -->
-    <script>
-        // === PANIER (localStorage) ===
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        function updateCartBadge() {
-            const count = cart.reduce((sum, item) => sum + item.qty, 0);
-            document.getElementById('cartCount').textContent = count;
-        }
-
-        function addToCart(name, price) {
-            const existing = cart.find(item => item.name === name);
-            if (existing) {
-                existing.qty += 1;
-            } else {
-                cart.push({ name, price: parseFloat(price), qty: 1 });
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartBadge();
-            alert(`✅ "${name}" ajouté au panier !`);
-        }
-
-        // === Écouteurs sur les boutons "Ajouter" ===
-        document.querySelectorAll('.add-to-cart').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                const name = this.dataset.name;
-                const price = this.dataset.price;
-                addToCart(name, price);
-            });
-        });
-
-        // === Bouton panier : affiche le contenu ===
-        document.getElementById('cartBtn').addEventListener('click', function() {
-            if (cart.length === 0) {
-                alert('🛒 Votre panier est vide.');
-                return;
-            }
-            let msg = '🛒 VOTRE PANIER :\n\n';
-            let total = 0;
-            cart.forEach(item => {
-                msg += `${item.name} × ${item.qty} = ${(item.price * item.qty).toFixed(2)} €\n`;
-                total += item.price * item.qty;
-            });
-            msg += `\n━━━━━━━━━━━━━━━━\nTOTAL : ${total.toFixed(2)} €`;
-            alert(msg);
-        });
-
-        // === Initialisation ===
-        updateCartBadge();
-    </script>
+</div>
 
 </body>
 </html>
