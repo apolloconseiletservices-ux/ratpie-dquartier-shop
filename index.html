@@ -6,23 +6,39 @@
     <title>RATPIE DQUARTIER · 93</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet"/>
     <style>
-        * { margin:0; padding:0; box-sizing:border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             background: #0a0a0a;
             font-family: 'Space Grotesk', sans-serif;
             color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
         }
-        .container { max-width: 1200px; margin: 0 auto; }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* ===== HEADER ===== */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 0 30px;
-            border-bottom: 1px solid rgba(255,204,0,0.15);
+            border-bottom: 1px solid rgba(255, 204, 0, 0.15);
             flex-wrap: wrap;
             gap: 15px;
         }
+
         .logo {
             font-family: 'Anton', sans-serif;
             font-size: 1.8rem;
@@ -31,6 +47,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .nav {
             display: flex;
             gap: 25px;
@@ -38,101 +55,299 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-        .nav a { color: #aaa; text-decoration: none; transition: 0.3s; }
-        .nav a:hover { color: #ffcc00; }
 
-        /* ===== L'IMAGE ===== */
-        .my-image {
-            width: 100%;
-            height: 400px;
+        .nav a {
+            color: #aaa;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* ===== SECTION PRODUIT ===== */
+        .product-section {
+            background: linear-gradient(145deg, #141414, #1a1a1a);
+            border-radius: 30px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255, 204, 0, 0.08);
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ===== T-SHIRT 3D ===== */
+        .tshirt-wrapper {
+            flex: 0 0 340px;
+            text-align: center;
+        }
+
+        .tshirt-3d {
+            width: 300px;
+            height: 380px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            border-radius: 20px 20px 40px 40px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 80px rgba(255, 204, 0, 0.05);
+            transition: 0.4s ease;
+            cursor: pointer;
+            border: 2px solid #2a2a2a;
+            overflow: hidden;
+            transform: perspective(800px) rotateX(2deg) rotateY(-2deg);
+        }
+
+        .tshirt-3d:hover {
+            transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1.02);
+            border-color: #ffcc00;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 60px rgba(255, 204, 0, 0.1);
+        }
+
+        /* Col */
+        .tshirt-3d .col {
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 30px;
+            background: inherit;
+            border-radius: 0 0 40px 40px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-top: none;
+        }
+
+        /* Manches */
+        .tshirt-3d .manche {
+            position: absolute;
+            top: 50px;
+            width: 55px;
+            height: 90px;
+            background: inherit;
+            border-radius: 40px 0 0 40px;
+            transform: rotate(18deg);
+            border: 2px solid rgba(0, 0, 0, 0.08);
+        }
+        .tshirt-3d .manche.droite {
+            right: -18px;
+            transform: rotate(-18deg);
+            border-radius: 0 40px 40px 0;
+        }
+        .tshirt-3d .manche.gauche {
+            left: -18px;
+        }
+
+        /* ===== L'IMAGE SUR LE T-SHIRT ===== */
+        .tshirt-3d .print {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
+            height: 60%;
             background-image: url('079AC749-C1BB-4E87-89B2-938D555F488D.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            border-radius: 24px;
-            border: 3px solid #ffcc00;
-            margin: 30px 0;
-            box-shadow: 0 0 60px rgba(255,204,0,0.08);
+            border-radius: 12px;
+            transition: 0.4s;
+            pointer-events: none;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        .card {
-            background: linear-gradient(145deg, #141414, #1a1a1a);
-            border-radius: 24px;
-            padding: 25px 20px;
-            text-align: center;
-            border: 1px solid rgba(255,204,0,0.08);
-            transition: 0.4s;
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: #ffcc00;
-            box-shadow: 0 10px 40px rgba(255,204,0,0.08);
-        }
-        .card .mockup {
-            height: 200px;
-            background: #1a1a1a;
-            border-radius: 16px;
+        /* ===== SÉLECTEUR DE COULEURS ===== */
+        .color-selector {
             display: flex;
-            align-items: center;
+            gap: 14px;
             justify-content: center;
-            font-family: 'Anton', sans-serif;
-            font-size: 1.2rem;
-            color: #ffcc00;
-            border: 1px solid #2a2a2a;
-            margin-bottom: 15px;
-            padding: 10px;
-            text-align: center;
+            margin-top: 25px;
+            flex-wrap: wrap;
         }
-        .card h3 { font-size: 1.2rem; }
-        .card .price {
-            font-family: 'Anton', sans-serif;
-            font-size: 1.8rem;
-            color: #ffcc00;
-            margin: 10px 0;
+
+        .color-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
-        .btn {
+
+        .color-btn:hover {
+            transform: scale(1.15);
+        }
+
+        .color-btn.active {
+            border-color: #ffcc00;
+            box-shadow: 0 0 25px rgba(255, 204, 0, 0.5);
+        }
+
+        .color-btn .label {
+            position: absolute;
+            bottom: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            color: #888;
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+
+        /* ===== INFOS ===== */
+        .info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .info h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .info .sub {
+            color: #888;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .info .price {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.8rem;
+            color: #ffcc00;
+            margin: 15px 0;
+        }
+
+        .btn-add {
             background: linear-gradient(135deg, #ffcc00, #ff8800);
             border: none;
-            padding: 12px 30px;
+            padding: 16px 50px;
             border-radius: 60px;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
+            letter-spacing: 2px;
             color: #0a0a0a;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 4px 30px rgba(255, 204, 0, 0.2);
             width: 100%;
+            max-width: 300px;
         }
-        .btn:hover {
+
+        .btn-add:hover {
             transform: scale(1.04);
-            box-shadow: 0 4px 30px rgba(255,204,0,0.3);
+            box-shadow: 0 6px 50px rgba(255, 204, 0, 0.4);
         }
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #ffcc00;
-            color: #ffcc00;
-            margin-top: 8px;
+
+        .hint {
+            color: #555;
+            font-size: 0.7rem;
+            margin-top: 15px;
+            letter-spacing: 1px;
         }
-        .btn-outline:hover { background: #ffcc00; color: #0a0a0a; }
+
+        /* ===== ZOOM OVERLAY ===== */
+        .zoom-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+        }
+
+        .zoom-overlay.open {
+            display: flex;
+        }
+
+        .zoom-overlay .zoom-content {
+            max-width: 550px;
+            width: 100%;
+            background: #1a1a1a;
+            border-radius: 30px;
+            padding: 30px;
+            border: 2px solid #ffcc00;
+            text-align: center;
+            position: relative;
+        }
+
+        .zoom-overlay .zoom-tshirt {
+            width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: 1px solid #2a2a2a;
+        }
+
+        .zoom-close {
+            background: #ffcc00;
+            color: #0a0a0a;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .zoom-close:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== FOOTER ===== */
         .footer {
             margin-top: 50px;
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.04);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
             color: #555;
             font-size: 0.7rem;
             letter-spacing: 3px;
         }
-        .footer strong { color: #ffcc00; }
-        @media (max-width: 600px) {
-            .header { flex-direction: column; align-items: center; }
-            .my-image { height: 250px; }
+
+        .footer strong {
+            color: #ffcc00;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 650px) {
+            .tshirt-wrapper {
+                flex: 0 0 100%;
+            }
+            .tshirt-3d {
+                width: 240px;
+                height: 310px;
+            }
+            .info h2 {
+                font-size: 2rem;
+            }
+            .info .price {
+                font-size: 2rem;
+            }
+            .zoom-overlay .zoom-tshirt {
+                height: 300px;
+            }
+            .product-section {
+                padding: 25px 15px;
+            }
         }
     </style>
 </head>
@@ -150,39 +365,99 @@
         </nav>
     </header>
 
-    <!-- ===== TON IMAGE ===== -->
-    <div class="my-image"></div>
+    <!-- PRODUIT -->
+    <div class="product-section">
 
-    <!-- PRODUITS -->
-    <div class="grid">
-        <div class="card">
-            <div class="mockup">RATPIE<br/>93</div>
-            <h3>RATPIE 93</h3>
+        <!-- T-SHIRT 3D -->
+        <div class="tshirt-wrapper">
+            <div class="tshirt-3d" id="tshirt" onclick="openZoom()">
+                <div class="col"></div>
+                <div class="manche gauche"></div>
+                <div class="manche droite"></div>
+                <div class="print" id="print"></div>
+            </div>
+
+            <!-- SÉLECTEUR DE COULEURS -->
+            <div class="color-selector">
+                <button class="color-btn active" style="background:#1a1a1a; border-color:#ffcc00;" onclick="changeColor('#1a1a1a', this)">
+                    <span class="label">Noir</span>
+                </button>
+                <button class="color-btn" style="background:#f5f5f5;" onclick="changeColor('#f5f5f5', this)">
+                    <span class="label">Blanc</span>
+                </button>
+                <button class="color-btn" style="background:#ffcc00;" onclick="changeColor('#ffcc00', this)">
+                    <span class="label">Jaune</span>
+                </button>
+                <button class="color-btn" style="background:#2e7d32;" onclick="changeColor('#2e7d32', this)">
+                    <span class="label">Vert</span>
+                </button>
+                <button class="color-btn" style="background:#c62828;" onclick="changeColor('#c62828', this)">
+                    <span class="label">Rouge</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- INFOS -->
+        <div class="info">
+            <h2>RATPIE<br/>DQUARTIER</h2>
+            <div class="sub">✦ Édition limitée · Sérigraphie ✦</div>
             <div class="price">29,90 €</div>
-            <button class="btn" onclick="alert('✅ Ajouté !')">Ajouter</button>
-            <button class="btn btn-outline">Détail</button>
+            <button class="btn-add" onclick="alert('✅ Ajouté au panier !')">🛒 Ajouter</button>
+            <div class="hint">👆 Clique sur le T‑shirt pour zoomer</div>
         </div>
-        <div class="card">
-            <div class="mockup">DQUARTIER<br/>ON CONNAÎT</div>
-            <h3>DQUARTIER</h3>
-            <div class="price">32,90 €</div>
-            <button class="btn" onclick="alert('✅ Ajouté !')">Ajouter</button>
-            <button class="btn btn-outline">Détail</button>
-        </div>
-        <div class="card">
-            <div class="mockup">93<br/>LA RUE</div>
-            <h3>93 LA RUE</h3>
-            <div class="price">34,90 €</div>
-            <button class="btn" onclick="alert('✅ Ajouté !')">Ajouter</button>
-            <button class="btn btn-outline">Détail</button>
-        </div>
+
     </div>
 
+    <!-- FOOTER -->
     <div class="footer">
         <strong>RATPIE DQUARTIER</strong> · 93 · ON CONNAÎT LA RUE
     </div>
 
 </div>
+
+<!-- ===== ZOOM OVERLAY ===== -->
+<div class="zoom-overlay" id="zoomOverlay" onclick="closeZoom(event)">
+    <div class="zoom-content" onclick="event.stopPropagation();">
+        <div class="zoom-tshirt" id="zoomTshirt" style="background-color:#1a1a1a; background-image:url('079AC749-C1BB-4E87-89B2-938D555F488D.png');"></div>
+        <button class="zoom-close" onclick="closeZoom()">✕ Fermer</button>
+    </div>
+</div>
+
+<script>
+    let currentColor = '#1a1a1a';
+
+    function changeColor(color, btn) {
+        currentColor = color;
+        const tshirt = document.getElementById('tshirt');
+        const zoomTshirt = document.getElementById('zoomTshirt');
+
+        // Change la couleur du T-shirt
+        tshirt.style.background = color;
+        zoomTshirt.style.backgroundColor = color;
+
+        // Adaptation texte
+        document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+
+    function openZoom() {
+        const overlay = document.getElementById('zoomOverlay');
+        const zoomTshirt = document.getElementById('zoomTshirt');
+        zoomTshirt.style.backgroundColor = currentColor;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeZoom(e) {
+        if (e && e.target !== e.currentTarget) return;
+        document.getElementById('zoomOverlay').classList.remove('open');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeZoom();
+    });
+</script>
 
 </body>
 </html>
